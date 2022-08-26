@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 mousePos;
     float speed = 5f;
     public Rigidbody2D rb;
+    public Rigidbody2D firepoint;
   
     // Update is called once per frame
   
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(mousePos);
         mp.x = mousePos.x;
         mp.y = mousePos.y;
-        Debug.Log(mousePos);
     }
 
     private void FixedUpdate()
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
        
         Vector2 lookDir =  mp - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        firepoint.rotation = angle;
+        Debug.Log(angle);
     }
 }
