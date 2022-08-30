@@ -8,7 +8,11 @@ public class EnemyMovement : MonoBehaviour
     public Transform player;
     public int speed;
 
-    // Start is called before the first frame update
+    private void Start()
+    {
+        player = GameObject.Find("Player").transform;
+    }
+
     void Update()
     {
         movement.x = gameObject.transform.position.x;
