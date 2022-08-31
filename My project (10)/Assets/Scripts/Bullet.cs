@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPooledObject
 {
     private int count = 0;
     ObjectPooler objectPooler;
@@ -27,7 +27,17 @@ public class Bullet : MonoBehaviour
         }
         count++;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if ( other.tag != "Player")
+        {
+            gameObject.SetActive(false);
+            objectPooler.poolDictionary[gameObject.tag].Enqueue(gameObject);
+        }
+    }
+
+    public void OnObjectDespawn()
+    {
+        
     }
 }
