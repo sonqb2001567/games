@@ -10,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
     float speed = 5f;
     public Rigidbody2D rb;
     public Rigidbody2D firepoint;
-  
-    // Update is called once per frame
-  
+    PlayerStats stats;
+
+    private void Start()
+    {
+        stats = GameObject.Find("GameManager").GetComponent<PlayerStats>();
+    }
+
     void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
@@ -32,6 +36,19 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lookDir =  mp - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         firepoint.rotation = angle;
-        Debug.Log(angle);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy1")
+        {
+            stats.DealDamage(10);
+        }    
+
+        if (collision.tag == "Drop")
+        {
+            collision.gameObject.SetActive(false);
+            stats.GainExp(10);
+        }
     }
 }

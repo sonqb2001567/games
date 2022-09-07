@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-   
+
     public static PlayerStats playerStats;
     public GameObject player;
+    public GameObject endGameSc;
 
     public float health;
     public float maxhealth;
+
+    private List<int> exp = new List<int>{30, 50, 90, 170};
+    private int currentExp;
+    private int count = 0;
 
     private void Awake()
     {
@@ -27,6 +32,8 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         health = maxhealth;
+        endGameSc = GameObject.Find("EndGameScene");
+        endGameSc.SetActive(false);
     }
 
     public void DealDamage(float damage)
@@ -45,7 +52,8 @@ public class PlayerStats : MonoBehaviour
     {
         if(health <= 0)
         {
-            Destroy(player);
+            player.SetActive(false);
+            endGameSc.SetActive(true);
         }
     }
 
@@ -54,6 +62,17 @@ public class PlayerStats : MonoBehaviour
         if (health > maxhealth)
         {
             health = maxhealth;
+        }
+    }
+
+    public void GainExp(int expOrb)
+    {
+        currentExp += expOrb;
+        if (currentExp >= exp[count])
+        {
+            currentExp = 0;
+            count++;
+            Debug.Log(count);
         }
     }
 }
