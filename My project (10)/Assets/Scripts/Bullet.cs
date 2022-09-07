@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour, IPooledObject
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.tag != "Player")
+        if ( other.tag != "Player" & other.tag != "Drop")
         {
             gameObject.SetActive(false);
             objectPooler.poolDictionary[gameObject.tag].Enqueue(gameObject);

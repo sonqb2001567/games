@@ -6,8 +6,9 @@ TagManager:
   tags:
   - New tag
   - bullet
-  - Enemy1
   - Drop
+  - Enemy
+  - Enemy1
   layers:
   - Default
   - TransparentFX

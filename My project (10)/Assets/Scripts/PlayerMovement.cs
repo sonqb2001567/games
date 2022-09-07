@@ -10,11 +10,14 @@ public class PlayerMovement : MonoBehaviour
     float speed = 5f;
     public Rigidbody2D rb;
     public Rigidbody2D firepoint;
+    
     PlayerStats stats;
-
+    ObjectPooler objectPooler;
+   
     private void Start()
     {
         stats = GameObject.Find("GameManager").GetComponent<PlayerStats>();
+        objectPooler = ObjectPooler.instance;
     }
 
     void Update()
@@ -48,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.tag == "Drop")
         {
             collision.gameObject.SetActive(false);
+            objectPooler.poolDictionary[collision.tag].Enqueue(collision.gameObject);
             stats.GainExp(10);
         }
     }

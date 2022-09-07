@@ -7,7 +7,6 @@ public class PlayerStats : MonoBehaviour
 
     public static PlayerStats playerStats;
     public GameObject player;
-    public GameObject endGameSc;
 
     public float health;
     public float maxhealth;
@@ -15,7 +14,9 @@ public class PlayerStats : MonoBehaviour
     private List<int> exp = new List<int>{30, 50, 90, 170};
     private int currentExp;
     private int count = 0;
+    private UIController uiControler;
 
+    #region Singleton
     private void Awake()
     {
         if(playerStats != null)
@@ -28,12 +29,12 @@ public class PlayerStats : MonoBehaviour
         }
         DontDestroyOnLoad(this);
     }
+    #endregion
 
     void Start()
     {
         health = maxhealth;
-        endGameSc = GameObject.Find("EndGameScene");
-        endGameSc.SetActive(false);
+        uiControler = UIController.instance;
     }
 
     public void DealDamage(float damage)
@@ -52,8 +53,9 @@ public class PlayerStats : MonoBehaviour
     {
         if(health <= 0)
         {
-            player.SetActive(false);
-            endGameSc.SetActive(true);
+            player.GetComponent<SpriteRenderer>().enabled = false;
+            uiControler.OpenUI("EndGamePanel");
+            Time.timeScale = 0;
         }
     }
 
