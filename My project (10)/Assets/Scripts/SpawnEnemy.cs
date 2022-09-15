@@ -6,6 +6,7 @@ public class SpawnEnemy : MonoBehaviour
 {
     public int spawnTime;
     private int count;
+    private int yVal, xVal;
 
     ObjectPooler objectPooler;
 
@@ -19,16 +20,37 @@ public class SpawnEnemy : MonoBehaviour
         if (count == spawnTime)
         {
             count = 0;
-            SpawnAtRandom();
+            SpawnAtRandom("GroupOfEnemy1");
         }
         count++;
     }
 
-    void SpawnAtRandom()
+    void SpawnAtRandom(string enemyName)
     {
-        GameObject newEnemy = objectPooler.SpawnFromPool("Enemy1");
-        Vector3 randomPos = new Vector3(Random.Range(0, 50), Random.Range(0, 50), 0);
+        if (Random.value < 0.5f)
+        {
+            yVal = 1;
+        }
+        else
+        {
+            yVal = -1;
+        }
+
+
+        if (Random.value < 0.5f)
+        {
+            xVal = 1;
+        }
+        else
+        {
+            xVal = -1;
+        }
+
+        GameObject newEnemy = objectPooler.SpawnFromPool(enemyName);
+        Vector3 randomPos = new Vector3(xVal*Random.Range(30, 50), yVal*Random.Range(30, 50), 0);
+
         newEnemy.transform.position = GameObject.Find("Player").transform.position + randomPos;
         newEnemy.transform.rotation = Quaternion.identity;
     }
+
 }

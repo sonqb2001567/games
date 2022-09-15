@@ -6,8 +6,11 @@ public class Attack : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public Transform secondFP;
     ObjectPooler objectPooler;
 
+    private int xVal, yVal;
+    private float randomAngle;
     public float bulletForce = 20f;
     public float shootingTime = 0f;
     float timeCounter;
@@ -25,6 +28,7 @@ public class Attack : MonoBehaviour
         if (timeCounter == shootingTime)
         {
             Shoot();
+            RandomShot();
             timeCounter = 0f;
         }
         timeCounter++;
@@ -40,9 +44,27 @@ public class Attack : MonoBehaviour
         {
             bullet.transform.position = firePoint.transform.position;
             bullet.transform.rotation = firePoint.transform.rotation;
-            bullet.SetActive(true);
+           
         }
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+    }
+
+    void RandomShot()
+    {
+        GameObject bullet = objectPooler.SpawnFromPool("bullet2");
+
+        if (bullet != null)
+        {
+            bullet.transform.position = firePoint.transform.position;
+            bullet.transform.rotation = firePoint.transform.rotation;
+
+        }
+
+        secondFP.rotation = Quaternion.AngleAxis(Random.Range(0, 360), Vector3.forward);
+        Vector2 randomPos = new Vector3(xVal * Random.Range(1, 3), yVal * Random.Range(1, 3));
+
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(secondFP.up * bulletForce, ForceMode2D.Impulse);
     }
 }

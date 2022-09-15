@@ -9,6 +9,9 @@ TagManager:
   - Drop
   - Enemy
   - Enemy1
+  - Enemy2
+  - GroupOfEnemy1
+  - bullet2
   layers:
   - Default
   - TransparentFX
