@@ -6,15 +6,16 @@ public class RotatingBullet : MonoBehaviour
 {
     float timeCounter = 0;
 
-    float speed;
-    float width;
-    float height;
+    public float speed;
+    public float width;
+    public float height;
 
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         speed = 5;
         width = 4;
         height = 4;

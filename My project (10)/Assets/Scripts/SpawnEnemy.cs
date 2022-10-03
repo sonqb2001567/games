@@ -20,7 +20,7 @@ public class SpawnEnemy : MonoBehaviour
         if (count == spawnTime)
         {
             count = 0;
-            SpawnAtRandom("GroupOfEnemy1");
+            SpawnAtRandom("Zombie");
         }
         count++;
     }

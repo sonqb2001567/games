@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IPooledObject
+public class Zombie : Enemy, IPooledObject
 {
     Vector2 movement, playerPos;
-    public Transform player;
-    public int speed;
+    public BaseEnemy baseEnemy;
+
+    [SerializeField] int health;
+    int speed;
+    int damage;
+    Transform player;
     ObjectPooler objectPooler;
 
     private void Start()
     {
         objectPooler = ObjectPooler.instance;
         player = GameObject.Find("Player").transform;
+        speed = baseEnemy.speed;
+        damage = baseEnemy.damage;
+        health = baseEnemy.health;
     }
 
     void Update()
@@ -30,12 +37,13 @@ public class Enemy : MonoBehaviour, IPooledObject
      
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public override void TakeDamage(int damageTaken)
     {
-        if ( other.tag == "bullet")
+        health -= damageTaken;
+        if (health < 0)
         {
-            gameObject.SetActive(false);
-            objectPooler.poolDictionary[gameObject.tag].Enqueue(gameObject);
+            this.gameObject.SetActive(false);
+            objectPooler.poolDictionary[this.transform.tag].Enqueue(this.gameObject);
             OnObjectDespawn();
         }
     }

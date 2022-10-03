@@ -7,16 +7,17 @@ public class Bullet : MonoBehaviour, IPooledObject
     public int speed;
     public int activeTime;
     private int count = 0;
+    int damage;
     ObjectPooler objectPooler;
-    
+
+    public void SetDamage(int s)
+    {
+        damage = s;
+    }
+
     private void Start()
     {
         objectPooler = ObjectPooler.instance;
-    //    Vector3 mousePos = Input.mousePosition;
-    //    mousePos.z = 0;
-    //    mousePos = myCamera.transform.TransformPoint(mousePos);
-    //    gameObject.GetComponent<Rigidbody2D>().velocity = (mousePos - gameObject.GetComponent<Transform>().position).normalized * bulletSpeed;
-    //    Debug.Log(mousePos);
     }
 
     private void FixedUpdate()
@@ -35,6 +36,7 @@ public class Bullet : MonoBehaviour, IPooledObject
         {
             gameObject.SetActive(false);
             objectPooler.poolDictionary[gameObject.tag].Enqueue(gameObject);
+            other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
 

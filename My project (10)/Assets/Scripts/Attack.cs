@@ -16,11 +16,21 @@ public class Attack : MonoBehaviour
     float timeCounter;
 
     Vector2 mousePos;
+
+    public List<string> weaponName;
+    public Dictionary<string, bool> weapon = new Dictionary<string, bool>();
+
     // Update is called once per frame
     private void Start()
     {
         objectPooler = ObjectPooler.instance;
         timeCounter = 0f;
+
+        for (int i = 0; i < weaponName.Count; i++)
+        {
+            weapon.Add(weaponName[i], false);
+        }
+        weapon["Shoot"] = true;
     }
 
     void Update()
