@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IPooledObject
+public class Bullet : BaseBullet, IPooledObject
 {
     public int speed;
     public int activeTime;
     private int count = 0;
     int damage;
+    public GameObject source;
     ObjectPooler objectPooler;
-
-    public void SetDamage(int s)
-    {
-        damage = s;
-    }
 
     private void Start()
     {
+        damage = source.GetComponent<BaseWeapon>().GetDamage();
         objectPooler = ObjectPooler.instance;
     }
 
@@ -30,9 +27,15 @@ public class Bullet : MonoBehaviour, IPooledObject
         }
         count++;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if ( other.tag != "Player" & other.tag != "Drop" & other.tag != "bullet")
+        HittingEnemy(other);
+    }
+
+    public override void HittingEnemy(Collider2D other)
+    {
+        if (other.tag == "Enemy")
         {
             gameObject.SetActive(false);
             objectPooler.poolDictionary[gameObject.tag].Enqueue(gameObject);

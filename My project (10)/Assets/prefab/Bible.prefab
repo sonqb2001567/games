@@ -137,4 +137,6 @@ MonoBehaviour:
   speed: 0
   width: 0
   height: 0
+  damage: 0
+  weapon: {fileID: 11400000, guid: d337bb0a320d41f4288ca67a753859e5, type: 2}
   player: {fileID: 0}

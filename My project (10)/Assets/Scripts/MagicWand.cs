@@ -40,7 +40,7 @@ public class MagicWand : BaseWeapon
     void RandomShot()
     {
         GameObject bullet = objectPooler.SpawnFromPool("bullet2");
-
+        bullet.GetComponent<Bullet>().source = this.gameObject;
         if (bullet != null)
         {
             bullet.transform.position = firePoint.transform.position;

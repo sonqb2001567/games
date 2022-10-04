@@ -16,5 +16,6 @@ public class Weapon : ScriptableObject
     public int delay;
     public float range;
     public string bullet;
+    [SerializeField] GameObject bulletPrefab;
     [SerializeField] bool equiped;
 }

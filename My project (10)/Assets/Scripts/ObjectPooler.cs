@@ -55,5 +55,4 @@ public class ObjectPooler : MonoBehaviour
         gameObject.SetActive(true);
         return gameObject;
     }
-
 }

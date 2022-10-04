@@ -35,6 +35,7 @@ public class Bow : BaseWeapon
     void Shoot()
     {
         GameObject bullet = objectPooler.SpawnFromPool(weapon.bullet);
+        bullet.GetComponent<Bullet>().source = this.gameObject;
         if (bullet != null)
         {
             bullet.transform.position = firePoint.transform.position;

@@ -10,11 +10,13 @@ public class Zombie : Enemy, IPooledObject
     [SerializeField] int health;
     int speed;
     int damage;
+    string poolTag;
     Transform player;
     ObjectPooler objectPooler;
 
     private void Start()
     {
+        poolTag = baseEnemy.tagFromPool;
         objectPooler = ObjectPooler.instance;
         player = GameObject.Find("Player").transform;
         speed = baseEnemy.speed;
@@ -40,10 +42,10 @@ public class Zombie : Enemy, IPooledObject
     public override void TakeDamage(int damageTaken)
     {
         health -= damageTaken;
-        if (health < 0)
+        if (health <= 0)
         {
             this.gameObject.SetActive(false);
-            objectPooler.poolDictionary[this.transform.tag].Enqueue(this.gameObject);
+            objectPooler.poolDictionary[poolTag].Enqueue(this.gameObject);
             OnObjectDespawn();
         }
     }

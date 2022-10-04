@@ -17,3 +17,4 @@ MonoBehaviour:
   speed: 2
   health: 15
   damage: 5
+  tagFromPool: Zombie

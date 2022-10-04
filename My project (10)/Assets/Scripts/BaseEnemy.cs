@@ -10,4 +10,5 @@ public class BaseEnemy : ScriptableObject
     public int speed;
     public int health;
     public int damage;
+    public string tagFromPool;
 }

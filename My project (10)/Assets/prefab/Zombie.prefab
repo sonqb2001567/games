@@ -135,3 +135,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseEnemy: {fileID: 11400000, guid: a9e589d9d397e3646851cd679edf95bc, type: 2}
+  health: 0
