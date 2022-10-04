@@ -88,8 +88,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
-    {
-        inventory.ClearInventory();
-    }
+    private void OnApplicationQuit() => inventory.ClearInventory();
 }

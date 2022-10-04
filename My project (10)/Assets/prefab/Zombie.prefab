@@ -135,4 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseEnemy: {fileID: 11400000, guid: a9e589d9d397e3646851cd679edf95bc, type: 2}
+  damagePopUpPreFab: {fileID: 4920186875605418173, guid: d3ddd50432a94874aa6f6618c4dbb6f7, type: 3}
   health: 0
+  speed: 0
+  damage: 0

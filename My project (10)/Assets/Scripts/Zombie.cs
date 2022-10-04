@@ -6,10 +6,11 @@ public class Zombie : Enemy, IPooledObject
 {
     Vector2 movement, playerPos;
     public BaseEnemy baseEnemy;
+    public DamagePopUp damagePopUpPreFab;
 
     [SerializeField] int health;
-    int speed;
-    int damage;
+    [SerializeField] int speed;
+    [SerializeField] int damage;
     string poolTag;
     Transform player;
     ObjectPooler objectPooler;
@@ -42,6 +43,9 @@ public class Zombie : Enemy, IPooledObject
     public override void TakeDamage(int damageTaken)
     {
         health -= damageTaken;
+        DamagePopUp damagePopUp = Instantiate(damagePopUpPreFab, this.transform.position, Quaternion.identity);
+        damagePopUp.Setup(damageTaken);
+
         if (health <= 0)
         {
             this.gameObject.SetActive(false);

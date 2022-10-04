@@ -46,8 +46,5 @@ public class Bow : BaseWeapon
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
-    public override int GetDamage()
-    {
-        return damage;
-    }
+    public override int GetDamage() => damage;
 }

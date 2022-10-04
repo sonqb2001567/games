@@ -54,8 +54,5 @@ public class MagicWand : BaseWeapon
         rb.AddForce(secondFP.up * bulletForce, ForceMode2D.Impulse);
     }
 
-    public override int GetDamage()
-    {
-        return damage;
-    }
+    public override int GetDamage() => damage;
 }
