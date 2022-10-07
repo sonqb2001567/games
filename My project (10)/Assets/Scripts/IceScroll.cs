@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bow : BaseWeapon
+public class IceScroll : BaseWeapon
 {
     public Weapon weapon;
     public ObjectPooler objectPooler;

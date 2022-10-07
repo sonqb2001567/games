@@ -9,9 +9,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject inventoryUI;
     void Update()
     {
-        for (int i = 0; i < inventory.inventory.Count; i++)
+        for (int i = 0; i < inventory.inventoryPassive.Count; i++)
         {
-            inventoryUI.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = inventory.inventory[i].GetComponent<SpriteRenderer>().sprite;
+            inventoryUI.transform.GetChild(1).GetChild(i).GetChild(0).GetComponent<Image>().sprite = inventory.inventoryPassive[i].GetComponent<SpriteRenderer>().sprite;
         }    
     }
 }

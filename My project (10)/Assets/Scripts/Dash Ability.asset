@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0140ddacb9b394a9ef212662abc2d7, type: 3}
-  m_Name: Zombie
+  m_Script: {fileID: 11500000, guid: 78a2781bf2eb1f645ad874e5f507a5e0, type: 3}
+  m_Name: Dash Ability
   m_EditorClassIdentifier: 
-  enemyName: Zombie
-  sprite: {fileID: 0}
-  speed: 5
-  health: 15
-  damage: 5
-  tagFromPool: Zombie
+  abilityName: Teleport
+  abilitySprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  coolDown: 10
+  activeTime: 0
+  dashVelocity: 5

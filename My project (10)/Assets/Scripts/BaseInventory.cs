@@ -5,14 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Inventory", menuName = "New Inventory")]
 public class BaseInventory : ScriptableObject
 {
-    public List<GameObject> inventory = new List<GameObject>();
+    public List<GameObject> inventoryActive = new List<GameObject>();
+    public List<GameObject> inventoryPassive = new List<GameObject>();
 
     public void AddWeapons(GameObject weapon)
     {
         bool hasItem = false;
-        for (int i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < inventoryPassive.Count; i++)
         {
-            if(inventory[i] == weapon)
+            if(inventoryPassive[i] == weapon)
             {
                 hasItem = true;
                 break;
@@ -21,12 +22,13 @@ public class BaseInventory : ScriptableObject
 
         if (!hasItem)
         {
-            inventory.Add(weapon);
+            inventoryPassive.Add(weapon);
         }    
     }    
 
     public void ClearInventory()
     {
-        inventory.Clear();
-    }    
+        inventoryPassive.Clear();
+        inventoryActive.Clear();
+    }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MagicWand
   m_EditorClassIdentifier: 
   weaponName: MagicWand
-  weaponType: Range
+  weaponType: Passive
   sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   description: The wand of the Arc mage of the vilage, unleash fire ball at random
     direction
@@ -22,3 +22,5 @@ MonoBehaviour:
   delay: 350
   range: 0
   bullet: bullet2
+  bulletPrefab: {fileID: 0}
+  equiped: 0

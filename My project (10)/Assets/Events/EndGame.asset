@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa0140ddacb9b394a9ef212662abc2d7, type: 3}
-  m_Name: Zombie
+  m_Script: {fileID: 11500000, guid: 08928e0774c116541a62c483a2d4ce97, type: 3}
+  m_Name: EndGame
   m_EditorClassIdentifier: 
-  enemyName: Zombie
-  sprite: {fileID: 0}
-  speed: 5
-  health: 15
-  damage: 5
-  tagFromPool: Zombie

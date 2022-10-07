@@ -12,11 +12,8 @@ TagManager:
   - Enemy2
   - GroupOfEnemy1
   - bullet2
-  - WeaponDrop
-  - Bow
   - Weapon
-  - MagicWand
-  - Bible
+  - chest
   layers:
   - Default
   - TransparentFX

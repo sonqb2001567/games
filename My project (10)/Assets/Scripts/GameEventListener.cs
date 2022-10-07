@@ -14,5 +14,4 @@ public class GameEventListener : MonoBehaviour
     void OnDestroy() => gameEvent.UnRegister(gameEventListener: this);
 
     public void RaiseEvent() => unityEvent.Invoke();
-    
 }

@@ -51,11 +51,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
-        {
-            stats.DealDamage(10);
-        }    
-
         if (collision.tag == "Drop")
         {
             collision.gameObject.SetActive(false);
@@ -63,29 +58,34 @@ public class PlayerMovement : MonoBehaviour
             stats.GainExp(10);
         }
 
-        if (collision.tag == "Bow")
+        if (collision.tag == "Drop1")
         {
-            GameObject go = Instantiate(weaponDict["Bow"], rb.position, Quaternion.identity);
-            go.transform.parent = GameObject.Find("Player").transform;
             collision.gameObject.SetActive(false);
-            inventory.AddWeapons(weaponDict["Bow"]);
+            objectPooler.poolDictionary[collision.tag].Enqueue(collision.gameObject);
+            stats.GainExp(15);
         }
 
-        if (collision.tag == "MagicWand")
+        if (collision.tag == "Drop2")
         {
-            GameObject go = Instantiate(weaponDict["MagicWand"], rb.position, Quaternion.identity);
-            go.transform.parent = GameObject.Find("Player").transform;
             collision.gameObject.SetActive(false);
-            inventory.AddWeapons(weaponDict["MagicWand"]);
+            objectPooler.poolDictionary[collision.tag].Enqueue(collision.gameObject);
+            stats.GainExp(30);
         }
+    }
 
-        if (collision.tag == "Bible")
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
         {
-            GameObject go = Instantiate(weaponDict["Bible"], rb.position, Quaternion.identity);
-            go.transform.parent = GameObject.Find("Player").transform;
-            collision.gameObject.SetActive(false);
-            inventory.AddWeapons(weaponDict["Bible"]);
+            stats.DealDamage(20);
         }
+    }
+
+    public void EquipWeapon(string target)
+    {
+        GameObject go = Instantiate(weaponDict[target], rb.position, Quaternion.identity);
+        go.transform.parent = GameObject.Find("Player").transform;
+        inventory.AddWeapons(weaponDict[target]);
     }
 
     private void OnApplicationQuit() => inventory.ClearInventory();

@@ -15,14 +15,6 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
-    private void Start()
-    {
-        uiElements.Add("EndGamePanel", GameObject.Find("EndGamePanel"));
-        uiElements.Add("SettingPanel", GameObject.Find("SettingPanel"));
-        uiElements["EndGamePanel"].SetActive(false);
-        uiElements["SettingPanel"].SetActive(false);
-    }
-
     public void OpenUI(string ui)
     {
         uiElements[ui].SetActive(true);
