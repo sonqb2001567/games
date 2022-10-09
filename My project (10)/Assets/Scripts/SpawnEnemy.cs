@@ -5,7 +5,8 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     public int spawnTime;
-    private int count;
+    private int count = 0;
+    private int count2 = 0;
     private int yVal, xVal;
 
     ObjectPooler objectPooler;
@@ -21,6 +22,13 @@ public class SpawnEnemy : MonoBehaviour
         {
             count = 0;
             SpawnAtRandom("Zombie");
+            count2 += 1;
+        }
+
+        if (count2 == 5)
+        {
+            SpawnAtRandom("GroupOfZombies");
+            count2 = 0;
         }
         count++;
     }

@@ -11,10 +11,12 @@ public class AbilityHolder : MonoBehaviour
     Sprite abilitySprite;
     float coolDown;
     float activeTime;
+    float castingTime;
 
     enum AbilityState
     {
         ready,
+        casting,
         active,
         cooldown
     }
@@ -37,6 +39,18 @@ public class AbilityHolder : MonoBehaviour
                 if (Input.GetKeyDown(key))
                 {
                     ability.Activate(player);
+                    state = AbilityState.casting;
+                    castingTime = ability.castingTime;
+                }
+                break;
+            case AbilityState.casting:
+                if (castingTime > 0)
+                {
+                    castingTime -= Time.deltaTime;
+                }
+                else
+                {
+                    ability.Casting(player);
                     state = AbilityState.active;
                 }
                 break;

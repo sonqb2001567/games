@@ -16,4 +16,5 @@ public class DashAbility : Ability
 
         player.transform.position = player.transform.position + movement.normalized * dashVelocity;
     }
+
 }
